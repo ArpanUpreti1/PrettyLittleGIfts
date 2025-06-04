@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const ProductCard = ({ product, delay }) => (
   <motion.div
-    className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+    className="bg-white rounded-xl shadow-lg border border-gray-100/80 overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: delay }}
