@@ -22,7 +22,7 @@ const Navbar = ({ isLoggedIn, handleSignOut, userName, isAdmin }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="p-4 md:p-6 bg-white shadow-sm sticky top-0 z-50">
+    <nav className="p-4 md:p-6 bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100/50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-heading text-[#D29C8B] cursor-pointer" onClick={() => navigate('/')}> {/* Use navigate('/') */}
           Pretty Little Gifts
