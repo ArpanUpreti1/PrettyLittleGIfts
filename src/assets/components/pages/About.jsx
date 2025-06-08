@@ -11,7 +11,7 @@ const About = () => (
     <div className="bg-white rounded-3xl shadow-xl p-8 md:p-16">
       <h2 className="text-5xl font-heading text-[#D29C8B] text-center mb-6">Our Story</h2>
       <p className="text-lg text-center font-body text-gray-700 mb-8 max-w-3xl mx-auto">
-        Our gifting shop was born in Nepal with a simple vision: to make every gift a symbol of love, culture, and connection. 
+        Our gifting shop was born in Nepal with a simple, passionate vision: to make every gift a timeless symbol of love, culture, and genuine connection. 
         We believe a gift should not only bring joy but also carry the warmth of Nepali craftsmanship and the thoughtfulness of the giver. 
       </p>
       <div className="grid md:grid-cols-2 gap-8 items-center mt-12">
