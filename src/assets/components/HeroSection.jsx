@@ -31,7 +31,7 @@ const HeroSection = () => {
         </svg>
       ),
       title: 'Hand-Crafted',
-      description: 'Every item is made with care and attention to detail.',
+      description: 'Every item is handcrafted with care, devotion, and attention to detail.',
     },
     {
       icon: (
