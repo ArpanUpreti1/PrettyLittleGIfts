@@ -22,7 +22,7 @@ const Dashboard = ({ userName, handleSignOut, isLoggedIn, isAdmin }) => {
           Admin Control Center
         </h1>
         <p className="text-xl text-center text-gray-600 mb-10">
-          Welcome, {userName}! Manage your application from this central hub.
+          Welcome back, {userName}! Here is your application overview.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
