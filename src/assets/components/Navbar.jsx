@@ -27,7 +27,7 @@ const Navbar = ({ isLoggedIn, handleSignOut, userName, isAdmin }) => {
         <div className="text-2xl font-heading text-[#D29C8B] cursor-pointer" onClick={() => navigate('/')}> {/* Use navigate('/') */}
           Pretty Little Gifts
         </div>
-        <div className="hidden md:flex space-x-8 items-center font-body text-[#333333]">
+        <div className="hidden md:flex space-x-10 items-center font-body text-[#333333]">
           <NavLink to="/shop">Shop</NavLink> {/* Updated 'to' prop */}
           <NavLink to="/about">About Us</NavLink> {/* Updated 'to' prop */}
           <NavLink to="/contact">Contact Us</NavLink> {/* Updated 'to' prop */}
