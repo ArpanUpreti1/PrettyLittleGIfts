@@ -36,7 +36,7 @@ const About = () => (
           <p className="text-base text-gray-600">
             We aim to bring people closer through meaningful gifts. Partnering with Nepali artisans and local businesses, 
             we curate unique items that reflect both tradition and modern creativity. From browsing to unwrapping, 
-            we want each moment to feel special. Our goal is to share Nepal’s culture of heartfelt giving with the world.
+            we want each moment to feel special. Our ultimate goal is to share Nepal’s rich culture of heartfelt giving and handmade gifts with the entire world.
           </p>
         </motion.div>
       </div>
