@@ -78,7 +78,7 @@ const SignIn = ({ handleSignIn }) => {
           </motion.button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
-          Don't have an account?{' '}
+          New to Pretty Little Gifts?{' '}
           <a 
             href="#" 
             onClick={(e) => { e.preventDefault(); navigate('/signup'); }} 
