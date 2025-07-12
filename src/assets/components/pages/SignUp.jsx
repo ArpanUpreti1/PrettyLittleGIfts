@@ -129,7 +129,7 @@ const SignUp = () => {
           </motion.button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
-          Already have an account?{' '}
+          Already registered with us?{' '}
           <a
             href="#"
             onClick={(e) => {
