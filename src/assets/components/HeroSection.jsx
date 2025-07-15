@@ -116,7 +116,7 @@ const HeroSection = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            From birthdays to just-because moments — find gifts that make hearts smile.
+            From birthdays to just-because moments — discover gifts that make hearts smile.
           </motion.p>
           <motion.p
             className="text-sm md:text-base opacity-85 mb-8"
