@@ -155,7 +155,7 @@ const OTPVerification = () => {
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))} // Only allow digits
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#B8860B] focus:border-[#B8860B] text-center text-lg tracking-widest"
               required
-              maxLength="6"
+              maxLength={6}
               placeholder="● ● ● ● ● ●"
               disabled={loading}
             />
