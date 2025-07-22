@@ -32,7 +32,7 @@ const Dashboard = ({ userName, handleSignOut, isLoggedIn, isAdmin }) => {
             transition={{ duration: 0.2 }}
           >
             <svg className="w-16 h-16 text-blue-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.165-1.294-.478-1.857m0 0A5.002 5.002 0 0012 13a5.002 5.002 0 00-4.522 2.143M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.165-1.294.478-1.857m0 0A5.002 5.002 0 0112 13a5.002 5.002 0 014.522 2.143M12 13V7m0 6a2 2 0 100-4 2 2 0 000 4zm-3 0h6"></path></svg>
-            <h2 className="text-3xl font-heading text-blue-700 mb-3">Manage Users</h2>
+            <h2 className="text-3xl font-heading text-blue-700 mb-3">User Accounts</h2>
             <p className="text-gray-600">View all user accounts.</p>
             <Link to="/user-list" className="mt-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">
               Manage Users
