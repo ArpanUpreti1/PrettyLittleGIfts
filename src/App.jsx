@@ -51,7 +51,7 @@ export default function App() {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        console.log('Checking authentication status...');
+        // console.log('Checking authentication status...');
         
         const response = await fetch('http://localhost:5028/api/Test/session-test', {
           method: 'GET',
