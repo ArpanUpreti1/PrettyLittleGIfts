@@ -60,7 +60,7 @@ const About = () => (
               className="w-36 h-36 rounded-full object-cover mb-4 shadow-lg" 
             />
             <h4 className="text-2xl font-heading text-[#D29C8B]">Arpan Upreti</h4>
-            <p className="text-sm text-gray-500 italic">Creative Visionary</p>
+            <p className="text-sm text-gray-500 italic">Lead Creative Visionary</p>
             <p className="mt-2 text-base text-gray-600 max-w-sm">
               Arpan brings fresh ideas and ensures that every gift tells a meaningful story.
             </p>
