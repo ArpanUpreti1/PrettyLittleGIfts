@@ -58,7 +58,7 @@ const Contact = () => {
               <h3 className="text-2xl font-heading text-[#D29C8B] mb-2">Our Location</h3>
               <p className="text-gray-600">
                 Itahari, Sunsari <br/>
-                Sangeet Chowk
+                Sangeet Chowk, Ward 4
               </p>
             </div>
             <div>
