@@ -21,6 +21,7 @@ const SignIn = ({ handleSignIn }) => {
         // Clear form on success
         setEmail('');
         setPassword('');
+        // TODO: Redirect to home or dash depending on role
       }
     } catch (error) {
       console.error('Sign in error:', error);
