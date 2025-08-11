@@ -180,7 +180,7 @@ const HeroSection = () => {
       {/* TESTIMONIALS */}
       <section className="mt-20">
         <div className="max-w-6xl mx-auto px-2">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-[#D29C8B] mb-4">What our customers say</h2>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-[#D29C8B] mb-4">What Our Customers Say</h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">Real stories from happy customers in Nepal. We use stock imagery for privacy, but the words are all heart. ❤️</p>
 
           <div className="relative rounded-3xl bg-gradient-to-r from-[#fff6f2] via-[#faf3ee] to-[#f5efe8] p-6 md:p-10 shadow-xl border border-[#d7c2b7]/40">
