@@ -47,20 +47,20 @@ const About = () => (
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <img src="https://placehold.co/150x150/B8860B/FDF7F0?text=Jane+Doe" alt="Jane Doe" className="w-36 h-36 rounded-full object-cover mb-4 shadow-lg" />
-            <h4 className="text-2xl font-heading text-[#D29C8B]">Jane Doe</h4>
+            <img src="https://placehold.co/150x150/B8860B/FDF7F0?text=Aayush+Prasai" alt="Aayush" className="w-36 h-36 rounded-full object-cover mb-4 shadow-lg" />
+            <h4 className="text-2xl font-heading text-[#D29C8B]">Aayush Prasai</h4>
             <p className="text-sm text-gray-500 italic">Chief Curator</p>
-            <p className="mt-2 text-base text-gray-600 max-w-sm">Jane has a lifelong passion for design and finding unique, heartfelt gifts that tell a story.</p>
+            <p className="mt-2 text-base text-gray-600 max-w-sm">Aayush has a lifelong passion for design and finding unique, heartfelt gifts that tell a story.</p>
           </motion.div>
           <motion.div
             className="flex flex-col items-center"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <img src="https://placehold.co/150x150/B8860B/FDF7F0?text=John+Smith" alt="John Smith" className="w-36 h-36 rounded-full object-cover mb-4 shadow-lg" />
-            <h4 className="text-2xl font-heading text-[#D29C8B]">John Smith</h4>
+            <img src="https://placehold.co/150x150/B8860B/FDF7F0?text=Jenish Shrestha" alt="Jenish" className="w-36 h-36 rounded-full object-cover mb-4 shadow-lg" />
+            <h4 className="text-2xl font-heading text-[#D29C8B]">Jenish Shrestha</h4>
             <p className="text-sm text-gray-500 italic">Operations Lead</p>
-            <p className="mt-2 text-base text-gray-600 max-w-sm">John ensures every gift is packaged with care and delivered with joy, from our hands to yours.</p>
+            <p className="mt-2 text-base text-gray-600 max-w-sm">Jenish ensures every gift is packaged with care and delivered with joy, from our hands to yours.</p>
           </motion.div>
         </div>
       </motion.div>
