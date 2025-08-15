@@ -58,6 +58,7 @@ const OTPVerification = () => {
         if (responseData.success !== false) { // Allow for undefined success or true
           alert('OTP Verified Successfully!');
           localStorage.removeItem('userEmailForOTP'); // Clean up stored email
+          sessionStorage.setItem('otpVerified', 'true');
           navigate('/signin'); 
         } else {
           // Backend returned 200 but indicated an error
