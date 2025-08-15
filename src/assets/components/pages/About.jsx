@@ -135,7 +135,7 @@ const About = () => (
             <div className="relative inline-block mb-8">
               <div className="w-40 h-40 mx-auto relative">
                 <img 
-                  src="https://placehold.co/150x150/B8860B/FDF7F0?text=Arpan+Upretu" 
+                  src="https://placehold.co/150x150/B8860B/FDF7F0?text=Arpan+Uprety" 
                   alt="Arpan" 
                   className="w-full h-full rounded-full object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105" 
                 />
@@ -143,7 +143,7 @@ const About = () => (
               </div>
             </div>
             <div className="space-y-3">
-              <h4 className="text-2xl font-heading text-[#D29C8B]">Arpan Upretu</h4>
+              <h4 className="text-2xl font-heading text-[#D29C8B]">Arpan Uprety</h4>
               <p className="text-base text-gray-500 italic font-medium">Co-Founder</p>
               <p className="text-base text-gray-600 max-w-xs mx-auto leading-relaxed">
                 Arpan brings innovative ideas and strategic vision to help create memorable gifting experiences.
