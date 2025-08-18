@@ -45,7 +45,7 @@ const Dashboard = ({ userName, handleSignOut, isLoggedIn, isAdmin }) => {
             transition={{ duration: 0.2 }}
           >
             <svg className="w-16 h-16 text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-            <h2 className="text-3xl font-heading text-green-700 mb-3">Manage Products</h2>
+            <h2 className="text-3xl font-heading text-green-700 mb-3">Product Catalog</h2>
             <p className="text-gray-600">View, edit, and delete your products.</p>
             <Link to="/product-list" className="mt-6 px-6 py-3 bg-green-500 text-white font-semibold rounded-full shadow-md hover:bg-green-600 transition-colors duration-300">
               Manage Products
