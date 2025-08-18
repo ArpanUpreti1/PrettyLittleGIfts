@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './assets/components/Navbar';
 import Footer from './assets/components/Footer';
@@ -8,6 +8,7 @@ import About from './assets/components/pages/About';
 import Contact from './assets/components/pages/Contact';
 import SignIn from './assets/components/pages/SignIn'; // Uncommented SignIn
 import SignUp from './assets/components/pages/SignUp';
+import Dashboard from './assets/components/pages/Dashboard';
 
 const colors = {
   primary: '#FDF7F0',
@@ -32,6 +33,30 @@ export default function App() {
   const [userName, setUserName] = useState('');
   const [message, setMessage] = useState(null);
 
+  // Effect to check authentication status on component mount
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        // Assuming a backend endpoint to check auth status and return user info
+        const response = await fetch('http://localhost:5028/api/Test/session-test');
+        if (response.ok) {
+          const data = await response.json();
+          setIsLoggedIn(true);
+          setUserName(data.userName || data.email.split('@')[0]); // Use userName from backend or derive from email
+        } else {
+          setIsLoggedIn(false);
+          setUserName('');
+        }
+      } catch (error) {
+        console.error('Failed to check authentication status:', error);
+        setIsLoggedIn(false);
+        setUserName('');
+      }
+    };
+
+    checkAuthStatus();
+  }, []); // Empty dependency array means this runs once on mount
+
   const navigateTo = (page) => {
     setCurrentPage(page);
   };
@@ -40,7 +65,12 @@ export default function App() {
     setIsLoggedIn(true);
     setUserName(email.split('@')[0]);
     setMessage({ text: "You are now signed in!", type: "success" });
-    navigateTo('dashboard');
+    // Admin check: For demonstration, assume 'admin@example.com' is an admin
+    if (email === 'admin@example.com') {
+      navigateTo('dashboard');
+    } else {
+      navigateTo('home'); // Redirect non-admin users to home or another appropriate page
+    }
   };
 
   const handleSignUp = () => {
@@ -104,6 +134,7 @@ export default function App() {
         isLoggedIn={isLoggedIn} 
         handleSignOut={handleSignOut}
         colors={colors}
+        userName={userName}
       />
 
       <main className="flex-grow">

@@ -14,7 +14,7 @@ const NavLink = ({ to, navigateTo, children, className = "" }) => (
   </motion.a>
 );
 
-const Navbar = ({ navigateTo, isLoggedIn, handleSignOut }) => {
+const Navbar = ({ navigateTo, isLoggedIn, handleSignOut, userName }) => { // Added userName
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -29,6 +29,7 @@ const Navbar = ({ navigateTo, isLoggedIn, handleSignOut }) => {
           <NavLink to="contact" navigateTo={navigateTo}>Contact Us</NavLink>
           {isLoggedIn ? (
             <>
+              <span className="text-gray-700">Hi, {userName}!</span> {/* Greeting for desktop */}
               <NavLink to="dashboard" navigateTo={navigateTo}>Dashboard</NavLink>
               <button
                 onClick={handleSignOut}
@@ -63,6 +64,7 @@ const Navbar = ({ navigateTo, isLoggedIn, handleSignOut }) => {
             transition={{ duration: 0.3 }}
             className="md:hidden mt-4 space-y-4"
           >
+            {isLoggedIn && <span className="block py-2 text-gray-700">Hi, {userName}!</span>} {/* Greeting for mobile */}
             <NavLink to="shop" navigateTo={navigateTo}>Shop</NavLink>
             <NavLink to="about" navigateTo={navigateTo}>About Us</NavLink>
             <NavLink to="contact" navigateTo={navigateTo}>Contact Us</NavLink>

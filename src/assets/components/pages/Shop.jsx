@@ -24,19 +24,6 @@ const Shop = ({ navigateTo }) => {
  const [selectedProduct, setSelectedProduct] = useState(null);
 
 
- const categories = ['All', 'Home Decor', 'Wellness', 'For the Kitchen', 'Personalized'];
-
-
- const filteredProducts = products.filter(product =>
- selectedCategory === 'All' || product.category === selectedCategory
- ).sort((a, b) => {
- if (sortBy === 'price-low') return a.price - b.price;
- if (sortBy === 'price-high') return b.price - a.price;
- if (sortBy === 'name-asc') return a.name.localeCompare(b.name);
- return 0;
- });
-
-
  const ProductModal = ({ product, onClose }) => (
  <motion.div
  className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-[99]"
