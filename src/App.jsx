@@ -69,6 +69,7 @@ export default function App() {
           setIsLoggedIn(true);
           if (data.userName || data.email) {
             setUserName(data.userName || data.email.split('@')[0]);
+          if (data.role) setUserRole(data.role);
           }
 
           // Check user role from backend using userinfo endpoint
