@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Added
 
-const SignUp = ({ handleSignUp, navigateTo }) => {
+const SignUp = ({ handleSignUp }) => { // Removed navigateTo prop
+  const navigate = useNavigate(); // Use useNavigate
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -85,7 +87,7 @@ const SignUp = ({ handleSignUp, navigateTo }) => {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              navigateTo('signIn');
+              navigate('/signin'); // Updated onClick
             }}
             className="text-[#D29C8B] hover:underline"
           >

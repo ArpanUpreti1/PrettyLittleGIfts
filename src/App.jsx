@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { Routes, Route, useNavigate } from 'react-router-dom'; // Added
 import Navbar from './assets/components/Navbar';
 import Footer from './assets/components/Footer';
 import Shop from './assets/components/pages/Shop';
 import HeroSection from './assets/components/HeroSection';
 import About from './assets/components/pages/About';
 import Contact from './assets/components/pages/Contact';
-import SignIn from './assets/components/pages/SignIn'; // Uncommented SignIn
+import SignIn from './assets/components/pages/SignIn';
 import SignUp from './assets/components/pages/SignUp';
 import Dashboard from './assets/components/pages/Dashboard';
 
@@ -18,17 +19,18 @@ const colors = {
 };
 
 // New Home page component that includes HeroSection
-const Home = ({ navigateTo }) => {
+const Home = () => { // Removed navigateTo prop
+  const navigate = useNavigate(); // Use useNavigate inside Home
   return (
     <div className="w-full">
-      <HeroSection navigateTo={navigateTo} />
+      <HeroSection navigateTo={navigate} /> {/* Pass navigate to HeroSection */}
       {/* Additional home page content can go here */}
     </div>
   );
 };
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // Changed default to 'home'
+  const navigate = useNavigate(); // Initialize useNavigate
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [message, setMessage] = useState(null);
@@ -37,12 +39,11 @@ export default function App() {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        // Assuming a backend endpoint to check auth status and return user info
         const response = await fetch('http://localhost:5028/api/Test/session-test');
         if (response.ok) {
           const data = await response.json();
           setIsLoggedIn(true);
-          setUserName(data.userName || data.email.split('@')[0]); // Use userName from backend or derive from email
+          setUserName(data.userName || data.email.split('@')[0]);
         } else {
           setIsLoggedIn(false);
           setUserName('');
@@ -55,55 +56,29 @@ export default function App() {
     };
 
     checkAuthStatus();
-  }, []); // Empty dependency array means this runs once on mount
-
-  const navigateTo = (page) => {
-    setCurrentPage(page);
-  };
+  }, []);
 
   const handleSignIn = (email) => {
     setIsLoggedIn(true);
     setUserName(email.split('@')[0]);
     setMessage({ text: "You are now signed in!", type: "success" });
-    // Admin check: For demonstration, assume 'admin@example.com' is an admin
     if (email === 'admin@example.com') {
-      navigateTo('dashboard');
+      navigate('/dashboard'); // Use navigate
     } else {
-      navigateTo('home'); // Redirect non-admin users to home or another appropriate page
+      navigate('/'); // Use navigate
     }
   };
 
   const handleSignUp = () => {
     setMessage({ text: "Sign up successful! Please sign in.", type: "success" });
-    navigateTo('signIn');
+    navigate('/signin'); // Use navigate
   };
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
     setUserName('');
     setMessage({ text: "You have been signed out.", type: "info" });
-    navigateTo('home'); // Changed to navigate to home after sign out
-  };
-
-  const PageRenderer = () => {
-    switch (currentPage) {
-      case 'home': // Added home case
-        return <Home navigateTo={navigateTo} />;
-      case 'shop':
-        return <Shop navigateTo={navigateTo} />;
-      case 'about':
-        return <About />;
-      case 'contact':
-        return <Contact />;
-      case 'signIn':
-        return <SignIn handleSignIn={handleSignIn} navigateTo={navigateTo} />;
-      case 'signUp':
-        return <SignUp handleSignUp={handleSignUp} navigateTo={navigateTo} />;
-      case 'dashboard':
-        return <Dashboard userName={userName} handleSignOut={handleSignOut} />;
-      default:
-        return <Home navigateTo={navigateTo} />; // Default to home
-    }
+    navigate('/'); // Use navigate
   };
 
   const MessageDisplay = ({ message, setMessage }) => {
@@ -117,7 +92,7 @@ export default function App() {
   };
 
   return (
-    <div 
+    <div
       className="flex flex-col min-h-screen font-body"
       style={{ backgroundColor: colors.primary, color: colors.text }}
     >
@@ -129,9 +104,9 @@ export default function App() {
         `}
       </style>
 
-      <Navbar 
-        navigateTo={navigateTo} 
-        isLoggedIn={isLoggedIn} 
+      <Navbar
+        navigateTo={navigate} // Pass navigate to Navbar
+        isLoggedIn={isLoggedIn}
         handleSignOut={handleSignOut}
         colors={colors}
         userName={userName}
@@ -139,12 +114,21 @@ export default function App() {
 
       <main className="flex-grow">
         <AnimatePresence mode="wait">
-          <PageRenderer />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signin" element={<SignIn handleSignIn={handleSignIn} />} />
+            <Route path="/signup" element={<SignUp handleSignUp={handleSignUp} />} />
+            <Route path="/dashboard" element={<Dashboard userName={userName} handleSignOut={handleSignOut} />} />
+            <Route path="*" element={<Home />} /> {/* Catch-all for unmatched routes */}
+          </Routes>
         </AnimatePresence>
       </main>
 
       <Footer colors={colors} />
-      
+
       <MessageDisplay message={message} setMessage={setMessage} />
     </div>
   );

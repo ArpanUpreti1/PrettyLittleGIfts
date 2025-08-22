@@ -1,36 +1,41 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Added
 
-const NavLink = ({ to, navigateTo, children, className = "" }) => (
-  <motion.a
-    href="#"
-    onClick={(e) => { e.preventDefault(); navigateTo(to); }}
-    className={`hover:text-[#D29C8B] transition-colors duration-300 block py-2 ${className}`}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-  >
-    {children}
-  </motion.a>
-);
+const NavLink = ({ to, children, className = "" }) => { // Removed navigateTo prop
+  const navigate = useNavigate(); // Use useNavigate inside NavLink
+  return (
+    <motion.a
+      href="#"
+      onClick={(e) => { e.preventDefault(); navigate(to); }} // Use navigate(to)
+      className={`hover:text-[#D29C8B] transition-colors duration-300 block py-2 ${className}`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {children}
+    </motion.a>
+  );
+};
 
-const Navbar = ({ navigateTo, isLoggedIn, handleSignOut, userName }) => { // Added userName
+const Navbar = ({ isLoggedIn, handleSignOut, userName }) => { // Removed navigateTo prop
+  const navigate = useNavigate(); // Use useNavigate inside Navbar
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <nav className="p-4 md:p-6 bg-white shadow-sm sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-heading text-[#D29C8B] cursor-pointer" onClick={() => navigateTo('herosection')}>
+        <div className="text-2xl font-heading text-[#D29C8B] cursor-pointer" onClick={() => navigate('/')}> {/* Use navigate('/') */}
           Pretty Little Gifts
         </div>
         <div className="hidden md:flex space-x-8 items-center font-body text-[#333333]">
-          <NavLink to="shop" navigateTo={navigateTo}>Shop</NavLink>
-          <NavLink to="about" navigateTo={navigateTo}>About Us</NavLink>
-          <NavLink to="contact" navigateTo={navigateTo}>Contact Us</NavLink>
+          <NavLink to="/shop">Shop</NavLink> {/* Updated 'to' prop */}
+          <NavLink to="/about">About Us</NavLink> {/* Updated 'to' prop */}
+          <NavLink to="/contact">Contact Us</NavLink> {/* Updated 'to' prop */}
           {isLoggedIn ? (
             <>
-              <span className="text-gray-700">Hi, {userName}!</span> {/* Greeting for desktop */}
-              <NavLink to="dashboard" navigateTo={navigateTo}>Dashboard</NavLink>
+              <span className="text-gray-700">Hi, {userName}!</span>
+              <NavLink to="/dashboard">Dashboard</NavLink> {/* Updated 'to' prop */}
               <button
                 onClick={handleSignOut}
                 className="px-4 py-2 bg-[#D29C8B] text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors duration-300"
@@ -40,8 +45,8 @@ const Navbar = ({ navigateTo, isLoggedIn, handleSignOut, userName }) => { // Add
             </>
           ) : (
             <>
-              <NavLink to="signIn" navigateTo={navigateTo}>Sign In</NavLink>
-              <NavLink to="signUp" navigateTo={navigateTo} className="bg-[#D29C8B] text-white px-4 py-2 rounded-lg font-bold">Sign Up</NavLink>
+              <NavLink to="/signin">Sign In</NavLink> {/* Updated 'to' prop */}
+              <NavLink to="/signup" className="bg-[#D29C8B] text-white px-4 py-2 rounded-lg font-bold">Sign Up</NavLink> {/* Updated 'to' prop */}
             </>
           )}
         </div>
@@ -64,13 +69,13 @@ const Navbar = ({ navigateTo, isLoggedIn, handleSignOut, userName }) => { // Add
             transition={{ duration: 0.3 }}
             className="md:hidden mt-4 space-y-4"
           >
-            {isLoggedIn && <span className="block py-2 text-gray-700">Hi, {userName}!</span>} {/* Greeting for mobile */}
-            <NavLink to="shop" navigateTo={navigateTo}>Shop</NavLink>
-            <NavLink to="about" navigateTo={navigateTo}>About Us</NavLink>
-            <NavLink to="contact" navigateTo={navigateTo}>Contact Us</NavLink>
+            {isLoggedIn && <span className="block py-2 text-gray-700">Hi, {userName}!</span>}
+            <NavLink to="/shop">Shop</NavLink> {/* Updated 'to' prop */}
+            <NavLink to="/about">About Us</NavLink> {/* Updated 'to' prop */}
+            <NavLink to="/contact">Contact Us</NavLink> {/* Updated 'to' prop */}
             {isLoggedIn ? (
               <>
-                <NavLink to="dashboard" navigateTo={navigateTo}>Dashboard</NavLink>
+                <NavLink to="/dashboard">Dashboard</NavLink> {/* Updated 'to' prop */}
                 <button
                   onClick={handleSignOut}
                   className="w-full px-4 py-2 bg-[#D29C8B] text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors duration-300"
@@ -80,8 +85,8 @@ const Navbar = ({ navigateTo, isLoggedIn, handleSignOut, userName }) => { // Add
               </>
             ) : (
               <>
-                <NavLink to="signIn" navigateTo={navigateTo}>Sign In</NavLink>
-                <NavLink to="signUp" navigateTo={navigateTo} className="bg-[#D29C8B] text-white px-4 py-2 rounded-lg font-bold">Sign Up</NavLink>
+                <NavLink to="/signin">Sign In</NavLink> {/* Updated 'to' prop */}
+                <NavLink to="/signup" className="bg-[#D29C8B] text-white px-4 py-2 rounded-lg font-bold">Sign Up</NavLink> {/* Updated 'to' prop */}
               </>
             )}
           </motion.div>

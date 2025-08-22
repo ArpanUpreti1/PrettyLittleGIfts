@@ -19,7 +19,6 @@ const ProductCard = ({ product, delay }) => (
     </div>
     <div className="p-6 text-left">
       <h3 className="text-lg font-semibold text-gray-800 mb-1">{product.name}</h3>
-      <p className="text-sm text-gray-500 mb-4">{product.category}</p>
       <div className="flex items-center justify-between">
         <span className="text-xl font-bold text-gray-900">${product.price}</span>
         <motion.button

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Added
 
-const SignIn = ({ handleSignIn, navigateTo }) => {
+const SignIn = ({ handleSignIn }) => { // Removed navigateTo prop
+  const navigate = useNavigate(); // Use useNavigate
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -54,7 +56,7 @@ const SignIn = ({ handleSignIn, navigateTo }) => {
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
           Don't have an account?{' '}
-          <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('signUp'); }} className="text-[#D29C8B] hover:underline">
+          <a href="#" onClick={(e) => { e.preventDefault(); navigate('/signup'); }} className="text-[#D29C8B] hover:underline"> {/* Updated onClick */}
             Sign Up
           </a>
         </p>

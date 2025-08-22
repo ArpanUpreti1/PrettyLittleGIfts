@@ -1,8 +1,10 @@
 import React from 'react';
 import heroimage from '../../images/heroimage.jpg';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Added
 
-const HeroSection = ({ navigateTo }) => {
+const HeroSection = () => { // Removed navigateTo prop
+  const navigate = useNavigate(); // Use useNavigate
   const headingVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
@@ -108,7 +110,7 @@ const HeroSection = ({ navigateTo }) => {
               animate="visible"
               whileHover="hover"
               whileTap="tap"
-              onClick={() => navigateTo('shop')}
+              onClick={() => navigate('/shop')} // Use navigate('/shop')
             >
               Shop Now
             </motion.button>
@@ -119,7 +121,7 @@ const HeroSection = ({ navigateTo }) => {
               animate="visible"
               whileHover="hover"
               whileTap="tap"
-              onClick={() => navigateTo('about')}
+              onClick={() => navigate('/about')} // Use navigate('/about')
             >
               Learn More
             </motion.button>
@@ -189,7 +191,7 @@ const HeroSection = ({ navigateTo }) => {
           className="px-8 py-3 bg-white text-[#D29C8B] font-bold rounded-full shadow-lg"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => navigateTo('signUp')}
+          onClick={() => navigate('/signup')} // Use navigate('/signup')
         >
           Create Your Account
         </motion.button>
