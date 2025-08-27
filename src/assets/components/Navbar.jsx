@@ -66,7 +66,7 @@ const Navbar = ({ isLoggedIn, handleSignOut, userName, isAdmin }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
             className="md:hidden mt-4 space-y-4"
           >
             {isLoggedIn && userName && <span className="block py-2 text-gray-700">Hi, {userName}!</span>}
