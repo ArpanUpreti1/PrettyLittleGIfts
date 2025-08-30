@@ -92,7 +92,7 @@ const About = () => (
               className="w-36 h-36 rounded-full object-cover mb-4 shadow-lg" 
             />
             <h4 className="text-2xl font-heading text-[#D29C8B]">Jenish Shrestha</h4>
-            <p className="text-sm text-gray-500 italic">Operations Lead</p>
+            <p className="text-sm text-gray-500 italic">Head of Operations</p>
             <p className="mt-2 text-base text-gray-600 max-w-sm">
               Jenish ensures each gift is carefully packaged and delivered with love, 
               carrying a piece of Nepal’s spirit to every recipient.
