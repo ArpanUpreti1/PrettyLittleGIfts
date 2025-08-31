@@ -1,16 +1,32 @@
+// Fixed SignIn.jsx
 import React from 'react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Added
+import { useNavigate } from 'react-router-dom';
 
-const SignIn = ({ handleSignIn }) => { // Removed navigateTo prop
-  const navigate = useNavigate(); // Use useNavigate
+const SignIn = ({ handleSignIn }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleSignIn(email, password);
+    setLoading(true);
+    
+    try {
+      const result = await handleSignIn(email, password);
+      // handleSignIn now returns a result, so we can handle success/failure
+      if (result.success) {
+        // Clear form on success
+        setEmail('');
+        setPassword('');
+      }
+    } catch (error) {
+      console.error('Sign in error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,6 +48,7 @@ const SignIn = ({ handleSignIn }) => { // Removed navigateTo prop
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#B8860B] focus:border-[#B8860B]"
               required
+              disabled={loading}
             />
           </div>
           <div>
@@ -43,20 +60,30 @@ const SignIn = ({ handleSignIn }) => { // Removed navigateTo prop
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#B8860B] focus:border-[#B8860B]"
               required
+              disabled={loading}
             />
           </div>
           <motion.button
             type="submit"
-            className="w-full px-6 py-3 bg-[#D29C8B] text-white font-bold rounded-lg shadow-md hover:bg-opacity-90 transition-colors duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            disabled={loading}
+            className={`w-full px-6 py-3 text-white font-bold rounded-lg shadow-md transition-colors duration-300 ${
+              loading 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-[#D29C8B] hover:bg-opacity-90'
+            }`}
+            whileHover={loading ? {} : { scale: 1.05 }}
+            whileTap={loading ? {} : { scale: 0.95 }}
           >
-            Sign In
+            {loading ? 'Signing In...' : 'Sign In'}
           </motion.button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
           Don't have an account?{' '}
-          <a href="#" onClick={(e) => { e.preventDefault(); navigate('/signup'); }} className="text-[#D29C8B] hover:underline"> {/* Updated onClick */}
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); navigate('/signup'); }} 
+            className="text-[#D29C8B] hover:underline"
+          >
             Sign Up
           </a>
         </p>

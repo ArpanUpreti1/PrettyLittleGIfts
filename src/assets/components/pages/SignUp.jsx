@@ -1,21 +1,68 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Added
+import { useNavigate } from 'react-router-dom';
 
-const SignUp = ({ handleSignUp }) => { // Removed navigateTo prop
-  const navigate = useNavigate(); // Use useNavigate
-  const [name, setName] = useState('');
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [fullName, setFullName] = useState(''); // Changed from 'name' to 'fullName'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-    handleSignUp(name, email, password);
+
+    try {
+      const response = await fetch('http://localhost:5028/api/Auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          fullName: fullName,     // Changed to match backend expectation
+          email: email, 
+          password: password,
+          confirmPassword: confirmPassword  // Added confirmPassword to request
+        }),
+      });
+
+      const responseData = await response.json();
+      console.log('Full API Response:', response);
+      console.log('API Response Data:', responseData);
+
+      if (response.ok) {
+        // Check for success - most APIs return success indicator or just 200 means success
+        if (responseData.success !== false) {
+          alert('Sign up successful! Please check your email for OTP.');
+          localStorage.setItem('userEmailForOTP', email);
+          navigate('/otp-verification');
+        } else {
+          console.error('Sign up failed (backend indicated error):', responseData);
+          alert(`Sign up failed: ${responseData.message || 'Please try again.'}`);
+        }
+      } else {
+        // Handle validation errors more specifically
+        if (response.status === 400 && responseData.errors) {
+          const errorMessages = [];
+          Object.keys(responseData.errors).forEach(field => {
+            responseData.errors[field].forEach(error => {
+              errorMessages.push(`${field}: ${error}`);
+            });
+          });
+          alert(`Validation errors:\n${errorMessages.join('\n')}`);
+        } else {
+          console.error('Sign up failed (HTTP error):', responseData);
+          alert(`Sign up failed: ${responseData.message || responseData.title || 'Please try again.'}`);
+        }
+      }
+    } catch (error) {
+      console.error('Error during sign up:', error);
+      alert('An error occurred during sign up. Please check your network connection.');
+    }
   };
 
   return (
@@ -29,12 +76,12 @@ const SignUp = ({ handleSignUp }) => { // Removed navigateTo prop
         <h2 className="text-5xl font-heading text-[#D29C8B] text-center mb-6">Create Account</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-bold text-gray-700">Full Name</label>
+            <label htmlFor="fullName" className="block text-sm font-bold text-gray-700">Full Name</label>
             <input
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id="fullName"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-[#B8860B] focus:border-[#B8860B]"
               required
             />
@@ -87,7 +134,7 @@ const SignUp = ({ handleSignUp }) => { // Removed navigateTo prop
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              navigate('/signin'); // Updated onClick
+              navigate('/signin');
             }}
             className="text-[#D29C8B] hover:underline"
           >

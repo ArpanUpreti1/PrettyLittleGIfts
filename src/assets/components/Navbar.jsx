@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom'; // Added
 
@@ -18,8 +17,8 @@ const NavLink = ({ to, children, className = "" }) => { // Removed navigateTo pr
   );
 };
 
-const Navbar = ({ isLoggedIn, handleSignOut, userName }) => { // Removed navigateTo prop
-  const navigate = useNavigate(); // Use useNavigate inside Navbar
+const Navbar = ({ isLoggedIn, handleSignOut, userName, isAdmin }) => {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -32,10 +31,11 @@ const Navbar = ({ isLoggedIn, handleSignOut, userName }) => { // Removed navigat
           <NavLink to="/shop">Shop</NavLink> {/* Updated 'to' prop */}
           <NavLink to="/about">About Us</NavLink> {/* Updated 'to' prop */}
           <NavLink to="/contact">Contact Us</NavLink> {/* Updated 'to' prop */}
-          {isLoggedIn ? (
+          {isLoggedIn && userName ? (
             <>
-              <span className="text-gray-700">Hi, {userName}!</span>
-              <NavLink to="/dashboard">Dashboard</NavLink> {/* Updated 'to' prop */}
+              {userName && <span className="text-gray-700">Hi, {userName}!</span>}
+              {!isAdmin && <NavLink to="/orders">Orders</NavLink>} {/* Conditionally render Orders link for normal users */}
+              {isAdmin && <NavLink to="/dashboard">Dashboard</NavLink>} {/* Conditionally render Dashboard link */}
               <button
                 onClick={handleSignOut}
                 className="px-4 py-2 bg-[#D29C8B] text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors duration-300"
@@ -69,13 +69,14 @@ const Navbar = ({ isLoggedIn, handleSignOut, userName }) => { // Removed navigat
             transition={{ duration: 0.3 }}
             className="md:hidden mt-4 space-y-4"
           >
-            {isLoggedIn && <span className="block py-2 text-gray-700">Hi, {userName}!</span>}
+            {isLoggedIn && userName && <span className="block py-2 text-gray-700">Hi, {userName}!</span>}
             <NavLink to="/shop">Shop</NavLink> {/* Updated 'to' prop */}
             <NavLink to="/about">About Us</NavLink> {/* Updated 'to' prop */}
             <NavLink to="/contact">Contact Us</NavLink> {/* Updated 'to' prop */}
-            {isLoggedIn ? (
+            {isLoggedIn && userName ? (
               <>
-                <NavLink to="/dashboard">Dashboard</NavLink> {/* Updated 'to' prop */}
+                {!isAdmin && <NavLink to="/orders">Orders</NavLink>} {/* Conditionally render Orders link for normal users */}
+                {isAdmin && <NavLink to="/dashboard">Dashboard</NavLink>} {/* Conditionally render Dashboard link */}
                 <button
                   onClick={handleSignOut}
                   className="w-full px-4 py-2 bg-[#D29C8B] text-white font-bold rounded-lg hover:bg-opacity-90 transition-colors duration-300"
